@@ -9,7 +9,9 @@ import ru.skillbranch.devintensive.extensions.format
 import ru.skillbranch.devintensive.models.BaseMessage
 import ru.skillbranch.devintensive.models.Chat
 import ru.skillbranch.devintensive.models.User
+import ru.skillbranch.devintensive.utils.Utils
 import java.util.*
+
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -65,4 +67,12 @@ class ExampleUnitTest {
         println(textMessage.formatMessage())
         println(imageMessage.formatMessage())
     }
+    @Test
+    fun test_initials(){
+        println(Utils.toInitials("john" ,"doe")) //JD
+        println(Utils.toInitials("John", null)) //J
+        println(Utils.toInitials(null, null)) //null
+        println(Utils.toInitials(" ", "")) //null
+    }
+
 }
