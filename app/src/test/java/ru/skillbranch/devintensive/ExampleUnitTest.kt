@@ -89,5 +89,18 @@ class ExampleUnitTest {
         println(Date().add(-400, TimeUnits.DAY).humanizeDiff()) //более года назад
         println(Date().add(400, TimeUnits.DAY).humanizeDiff()) //более чем через год
     }
+    @Test
+    fun test_builder(){
+        val user = User.Builder().id("5")
+            .firstName("Jon")
+            .lastName("Connor")
+            .avatar("")
+            .rating(4)
+            .respect(5)
+            .lastVisit(Date())
+            .isOnline(true)
+            .build()
+        print(user)
+    }
 
 }
