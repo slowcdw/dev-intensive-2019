@@ -105,6 +105,11 @@ class ExampleUnitTest {
         println("Bender Bending Rodriguez — дословно «Сгибальщик Сгибающий Родригес»".truncate(15)) //Bender Bending...
         println("A     ".truncate(3)) //A
     }
+    @Test
+    fun test_html_trim(){
+        println("<p class=\"title\">Образовательное IT-сообщество Skill Branch</p>&#8855;".stripHtml()) //Образовательное IT-сообщество Skill Branch
+        println("<p>Образовательное       IT-сообщество &#8855;Skill Branch</p>".stripHtml()) //Образовательное IT-сообщество Skill Branch
+    }
 
 
 

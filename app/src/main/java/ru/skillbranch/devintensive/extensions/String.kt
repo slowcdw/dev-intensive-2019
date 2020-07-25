@@ -8,3 +8,10 @@ fun String.truncate(amount: Int = 16): String{
     }
     return str
 }
+
+fun String.stripHtml(): String{
+    var result = Regex("<[^>]*?>").replace(this, "")
+    result = result.replace(Regex("\\s{2,}"), " ")
+    result = result.replace(Regex("&[^;]*?;"), "")
+    return result
+}
