@@ -8,6 +8,7 @@ import android.os.Message
 import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.EdgeEffect
 import android.widget.EditText
 import android.widget.ImageView
@@ -30,7 +31,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         textTxt = tv_text
         messageEt = et_message
         sendBtn = iv_send
-
+        messageEt.setOnEditorActionListener { v, actionId, event ->
+//            Toast.makeText(getApplicationContext(), "Some key pressed!", Toast.LENGTH_LONG).show();
+//            Log.d("M_MainActivity", "!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+//            Log.d("M_MainActivity", actionId.toString())
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                // ???????????? ??????? ?????? GO
+//                Log.d("M_MainActivity", "onEditorAction")
+                sendBtn.callOnClick()
+                this.hideKeyboard()
+                true;
+            } else {
+                false
+            }
+        }
 
 
         val status = savedInstanceState?.getString("STATUS") ?: Bender.Status.NORMAL.name
