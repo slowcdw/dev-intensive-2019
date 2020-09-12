@@ -16,7 +16,6 @@ object PreferencesRepository {
     private const val RESPECT = "RESPECT"
     private const val APP_THEME = "APP_THEME"
 
-
     private val prefs: SharedPreferences by lazy {
         val ctx = App.applicationContext()
         PreferenceManager.getDefaultSharedPreferences(ctx)
@@ -63,5 +62,6 @@ object PreferencesRepository {
         }
         apply()
     }
+
 
 }
