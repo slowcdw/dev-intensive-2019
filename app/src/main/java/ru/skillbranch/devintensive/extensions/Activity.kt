@@ -1,6 +1,8 @@
 package ru.skillbranch.devintensive.extensions
 
 import android.app.Activity
+import android.graphics.Rect
+import android.util.TypedValue
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import ru.skillbranch.devintensive.MainActivity
@@ -17,3 +19,15 @@ fun Activity.hideKeyboard() {
     }
     imm.hideSoftInputFromWindow(view.windowToken, 0);
 }
+
+fun Activity.isKeyboardOpen(): Boolean{
+    val rootView = findViewById<View>(android.R.id.content)
+    val rect = Rect()
+    rootView.getWindowVisibleDisplayFrame(rect)
+    val heightDiff = rootView.height - rect.height()
+//    val err = this.dpToPx(20F)
+    val err = TypedValue.applyDimension (TypedValue.COMPLEX_UNIT_DIP , 20F, this.resources.displayMetrics)
+    return heightDiff > err
+}
+
+fun Activity.isKeyboardClosed(): Boolean = !this.isKeyboardOpen()

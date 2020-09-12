@@ -103,7 +103,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if(v?.id == R.id.iv_send){
-            val (phrace, color) = benderObj.listenAnswer(messageEt.text.toString().toLowerCase())
+//            val (phrace, color) = benderObj.listenAnswer(messageEt.text.toString().toLowerCase())
+            if (messageEt.text.toString().isNullOrBlank()) return
+            val (phrace, color) = benderObj.listenAnswer(messageEt.text.toString())
             messageEt.setText("")
             val (r,g,b) = color
             benderImage.setColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY )
