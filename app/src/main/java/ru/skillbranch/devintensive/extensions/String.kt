@@ -17,7 +17,22 @@ fun String.stripHtml(): String{
 }
 
 fun String.validateUrl(): Boolean{
-    val regex = Regex("https://github.com/|https://www.github.com/|www.github.com/|github.com/")
-    regex.matches(this)
-    return true
+    var exceptions = arrayOf(
+        "enterprise",
+        "features",
+        "topics",
+        "collections",
+        "trending",
+        "events",
+        "marketplace",
+        "pricing",
+        "nonprofit",
+        "customer",
+        "stories",
+        "security",
+        "login",
+        "join"
+    )
+    val regex = Regex("^(https://github.com/|https://www.github.com/|www.github.com/|github.com/)[^/\\s]+/?$")
+    return regex.matches(this)||this.isBlank()||exceptions.contains(this)
 }
