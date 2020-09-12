@@ -74,7 +74,7 @@ class ExampleUnitTest {
     }
     @Test
     fun test_transliteration(){
-        println(Utils.transliteration("Женя Стереотипов")) //Zhenya Stereotipov
+        println(Utils.transliteration("Иван Стереотипов", "_")) //Zhenya Stereotipov
         println(Utils.transliteration("Amazing Петр","_")) //Amazing_Petr
     }
     @Test

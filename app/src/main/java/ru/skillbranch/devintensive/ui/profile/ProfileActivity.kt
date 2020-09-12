@@ -5,6 +5,8 @@ import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.EditText
@@ -13,6 +15,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_profile.*
 import ru.skillbranch.devintensive.R
+import ru.skillbranch.devintensive.extensions.validateUrl
 import ru.skillbranch.devintensive.models.Profile
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 
@@ -20,7 +23,7 @@ class ProfileActivity : AppCompatActivity() {
     companion object{
         const val IS_EDIT_MODE = "IS_EDIT_MODE"
     }
-
+    var isValidRepo = true
     private lateinit var viewModel: ProfileViewModel
     var isEditMode = false
     lateinit var viewFields : Map<String, TextView>
@@ -81,6 +84,21 @@ class ProfileActivity : AppCompatActivity() {
             isEditMode = !isEditMode
             showEditMode(isEditMode)
         }
+
+        et_repository.addTextChangedListener(object: TextWatcher {
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s.toString().validateUrl()) {
+                    isValidRepo = true
+                    wr_repository.error = null
+                    wr_repository.isErrorEnabled = false
+                } else {
+                    isValidRepo = false
+                    wr_repository.error = "Невалидный адрес репозитория"
+                }
+            }
+            override fun afterTextChanged(s: Editable?) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        })
 
         btn_switch_theme.setOnClickListener {
             viewModel.switchTheme()

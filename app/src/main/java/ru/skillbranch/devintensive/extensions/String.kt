@@ -15,3 +15,9 @@ fun String.stripHtml(): String{
     result = result.replace(Regex("&[^;]*?;"), "")
     return result
 }
+
+fun String.validateUrl(): Boolean{
+    val regex = Regex("https://github.com/|https://www.github.com/|www.github.com/|github.com/")
+    regex.matches(this)
+    return true
+}
