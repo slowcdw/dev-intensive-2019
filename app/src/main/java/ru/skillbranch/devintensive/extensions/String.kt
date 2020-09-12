@@ -17,8 +17,7 @@ fun String.stripHtml(): String{
 }
 
 
-/*
-fun String.validateUrl(): Boolean{
+fun String.validUrl(): Boolean{
     var exceptions = setOf(
         "enterprise",
         "features",
@@ -29,8 +28,7 @@ fun String.validateUrl(): Boolean{
         "marketplace",
         "pricing",
         "nonprofit",
-        "customer",
-        "stories",
+        "customer-stories",
         "security",
         "login",
         "join"
@@ -38,7 +36,8 @@ fun String.validateUrl(): Boolean{
     val regex1 = Regex("^(https://github.com/|https://www.github.com/|www.github.com/|github.com/)($exceptions)/?$")
     val regex2 = Regex("^(https://github.com/|https://www.github.com/|www.github.com/|github.com/)[^/\\s]+/?$")
     return !regex1.matches(this)&&regex2.matches(this)||this.isBlank()
-}*/
+}
+/*
 fun String.validUrl(): Boolean {
 
     val exceptions = arrayOf(
@@ -60,4 +59,4 @@ fun String.validUrl(): Boolean {
     val regex = Regex("^(?:https://)?(?:www.)?(?:github.com/)[^/|\\s]+((?:$exceptions)|(?<!$exceptions))(?:/)?$")
 
     return (this.isBlank() || regex.matches(this))
-}
+}*/
