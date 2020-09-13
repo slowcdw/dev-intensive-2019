@@ -1,18 +1,24 @@
 package ru.skillbranch.devintensive.viewmodels
 
+import android.graphics.drawable.Drawable
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import ru.skillbranch.devintensive.App
+import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.Profile
+import ru.skillbranch.devintensive.models.TextDrawable
 import ru.skillbranch.devintensive.repositories.PreferencesRepository
+import ru.skillbranch.devintensive.utils.Utils
 
 class ProfileViewModel : ViewModel(){
 
     private val repository : PreferencesRepository = PreferencesRepository
     private val profileData = MutableLiveData<Profile>()
     private val appTheme = MutableLiveData<Int>()
+    private val initialsDrawable = MutableLiveData<Drawable>()
 
     init {
         Log.d("M_ProfileViewModel","init view model")
@@ -23,6 +29,8 @@ class ProfileViewModel : ViewModel(){
     override fun onCleared() {
         Log.d("M_ProfileViewModel","view model cleared")
     }
+
+    fun getTextInitials(): LiveData<Drawable> = initialsDrawable
 
     fun getProfileData():LiveData<Profile> = profileData
 
@@ -40,5 +48,25 @@ class ProfileViewModel : ViewModel(){
             appTheme.value = AppCompatDelegate.MODE_NIGHT_YES
         }
         repository.saveAppTheme(appTheme.value!!)
+    }
+
+    fun updateTextInitials(profile: Profile, colorId: Int) {
+        val initials = Utils.toInitials(profile.firstName, profile.lastName)
+//        Log.d("M_ProfileActivity", initials)
+        if (!initials.isNullOrBlank()) {
+            initialsDrawable.value = textDrawable(initials, colorId)
+        }else {
+            
+        }
+    }
+    private fun textDrawable(initials: String, colorId: Int): Drawable {
+        return TextDrawable
+            .builder()
+            .beginConfig()
+            .width(App.applicationContext().resources.getDimension(R.dimen.avatar_round_size).toInt())
+            .height(App.applicationContext().resources.getDimension(R.dimen.avatar_round_size).toInt())
+            .fontSize(200)
+            .endConfig()
+            .buildRound(initials, colorId)
     }
 }

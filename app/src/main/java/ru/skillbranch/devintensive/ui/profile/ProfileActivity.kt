@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.util.TypedValue
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -47,6 +48,7 @@ class ProfileActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
         viewModel.getProfileData().observe(this, Observer { updateUI(it) })
         viewModel.getTheme().observe(this, Observer{updateTheme(it)})
+        viewModel.getTextInitials().observe(this, Observer { iv_avatar.setImageDrawable(it) })
     }
 
     private fun updateTheme(mode: Int) {
@@ -59,6 +61,10 @@ class ProfileActivity : AppCompatActivity() {
             for((k,v) in viewFields){
                 v.text = it[k].toString()
 //                Log.d("M_ProfileActivity", it[k].toString())
+            }
+            viewModel.updateTextInitials(profile, getAccentColor())
+            btn_switch_theme.setOnClickListener{
+                viewModel.switchTheme()
             }
         }
     }
@@ -151,6 +157,11 @@ class ProfileActivity : AppCompatActivity() {
         ).apply {
             viewModel.saveProfileData(this)
         }
+    }
+    private fun getAccentColor(): Int {
+        val tv = TypedValue()
+        theme.resolveAttribute(R.attr.colorAccent, tv, true)
+        return tv.data
     }
 }
 
