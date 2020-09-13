@@ -29,7 +29,7 @@ object Utils {
         else null
 //        "${firstName?.let { it.substring(0, 1) }}${lastName?.let { it.substring(0, 1) }}".toUpperCase()
     }
-/*    fun transliteration(payload: String, divider: String = " "): String{
+    fun transliteration(payload: String, divider: String = " "): String{
         val dictionary = mapOf(
         "а" to "a",
         "б" to "b",
@@ -80,8 +80,8 @@ object Utils {
             newStr += divider
         }
         return newStr!!.substring(0, newStr.length - divider.length)
-    }*/
-fun transliteration(payload: String, divider: String = " "): String {
+    }
+/*fun transliteration(payload: String, divider: String = " "): String {
     val fullName: List<String> = payload.split(" ").filter { a -> a.isNotBlank() }
     var res = ""
     for (word: String in fullName) {
@@ -169,6 +169,6 @@ fun transliteration(payload: String, divider: String = " "): String {
     }
 
     return res
-}
+}*/
 }
 

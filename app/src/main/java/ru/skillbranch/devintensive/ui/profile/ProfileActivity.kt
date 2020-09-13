@@ -58,6 +58,7 @@ class ProfileActivity : AppCompatActivity() {
         profile.toMap().also {
             for((k,v) in viewFields){
                 v.text = it[k].toString()
+//                Log.d("M_ProfileActivity", it[k].toString())
             }
         }
     }
