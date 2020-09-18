@@ -1,4 +1,8 @@
 package ru.skillbranch.devintensive.utils
+
+import android.graphics.Color
+import kotlin.random.Random
+
 object Utils {
     fun parseFullName(fullName:String?):Pair<String?, String?>{
         val firstName : String?
@@ -170,5 +174,9 @@ object Utils {
 
     return res
 }*/
+    fun randomColor(): Int {
+        val random = Random
+        return Color.argb(255, random.nextInt(255), random.nextInt(255), random.nextInt(255))
+    }
 }
 
