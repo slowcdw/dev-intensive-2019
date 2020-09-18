@@ -8,8 +8,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.skillbranch.devintensive.App
 import ru.skillbranch.devintensive.R
-import ru.skillbranch.devintensive.models.Profile
-import ru.skillbranch.devintensive.models.TextDrawable
 import ru.skillbranch.devintensive.repositories.PreferencesRepository
 import ru.skillbranch.devintensive.utils.Utils
 

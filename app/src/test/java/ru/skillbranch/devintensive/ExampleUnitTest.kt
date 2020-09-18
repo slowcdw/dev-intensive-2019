@@ -5,7 +5,6 @@ import org.junit.Test
 import org.junit.Assert.*
 import ru.skillbranch.devintensive.extensions.*
 import ru.skillbranch.devintensive.models.BaseMessage
-import ru.skillbranch.devintensive.models.Chat
 import ru.skillbranch.devintensive.models.data.User
 import ru.skillbranch.devintensive.utils.Utils
 import java.util.*
