@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.skillbranch.devintensive.App
 import ru.skillbranch.devintensive.R
+import ru.skillbranch.devintensive.models.Profile
 import ru.skillbranch.devintensive.repositories.PreferencesRepository
 import ru.skillbranch.devintensive.utils.Utils
 
@@ -48,7 +49,7 @@ class ProfileViewModel : ViewModel(){
         repository.saveAppTheme(appTheme.value!!)
     }
 
-    fun updateTextInitials(profile: Profile, colorId: Int) {
+/*    fun updateTextInitials(profile: Profile, colorId: Int) {
         val initials = Utils.toInitials(profile.firstName, profile.lastName)
 //        Log.d("M_ProfileActivity", initials)
         if (!initials.isNullOrBlank()) {
@@ -66,5 +67,5 @@ class ProfileViewModel : ViewModel(){
             .fontSize(200)
             .endConfig()
             .buildRound(initials, colorId)
-    }
+    }*/
 }

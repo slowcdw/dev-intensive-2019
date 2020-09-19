@@ -7,6 +7,7 @@ import ru.skillbranch.devintensive.utils.Utils
  * Created by BashkatovSM on 28.06.2019
  */
 
+/*
 fun User.toUserView() : UserView {
 
     val nickName = Utils.transliteration("$firstName $lastName")
@@ -21,6 +22,7 @@ fun User.toUserView() : UserView {
         avatar = avatar,
         status = status )
 }
+*/
 
 
 
