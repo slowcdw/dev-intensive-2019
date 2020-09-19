@@ -1,6 +1,5 @@
 package ru.skillbranch.devintensive.ui.profile
 
-import android.graphics.Color
 import android.graphics.ColorFilter
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
@@ -17,7 +16,6 @@ import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_profile.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.extensions.validUrl
-import ru.skillbranch.devintensive.models.Profile
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 
 
@@ -36,7 +34,7 @@ class ProfileActivity : AppCompatActivity() {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
-        initViews(savedInstanceState)
+//        initViews(savedInstanceState)
         initViewModel()
     }
 
@@ -48,7 +46,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun initViewModel() {
         viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
-        viewModel.getProfileData().observe(this, Observer{updateUI(it)})
+//        viewModel.getProfileData().observe(this, Observer{updateUI(it)})
         viewModel.getTheme().observe(this, Observer{updateTheme(it)})
         viewModel.getTextInitials().observe(this, Observer { iv_avatar.setImageDrawable(it) })
     }
@@ -57,19 +55,19 @@ class ProfileActivity : AppCompatActivity() {
         delegate.setLocalNightMode(mode)
     }
 
-    private fun updateUI(profile: Profile) {
+/*    private fun updateUI(profile: Profile) {
         profile.toMap().also {
             for ((k, v) in viewFields) {
                 v.text = it[k].toString()
             }
-            /*viewModel.updateTextInitials(getAccentColor())
+            *//*viewModel.updateTextInitials(getAccentColor())
             btn_switch_theme.setOnClickListener{
                 viewModel.switchTheme()
-            }*/
+            }*//*
         }
-    }
+    }*/
 
-    private fun initViews(savedInstanceState: Bundle?) {
+    /*private fun initViews(savedInstanceState: Bundle?) {
         viewFields = mapOf(
             "nickName" to tv_nick_name,
             "rank" to tv_rank,
@@ -100,15 +98,15 @@ class ProfileActivity : AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
         })
 
-        btn_edit.setOnClickListener {
+        *//*btn_edit.setOnClickListener {
             if(isValidRepo) {
                 if(isEditMode) saveProfileInfo()
                 isEditMode = !isEditMode
                 showCurrentMode(isEditMode)
             }
-         }
+         }*//*
 
-    }
+    }*/
 
     private fun showCurrentMode(isEdit: Boolean) {
         val info = viewFields.filter { setOf("firstName", "lastName", "about", "repository").contains(it.key) }
@@ -143,7 +141,7 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveProfileInfo() {
+    /*private fun saveProfileInfo() {
         Profile(
             firstName = et_first_name.text.toString(),
             lastName = et_last_name.text.toString(),
@@ -152,7 +150,7 @@ class ProfileActivity : AppCompatActivity() {
         ).apply {
             viewModel.saveProfileData(this)
         }
-    }
+    }*/
 
     private fun getAccentColor(): Int {
         val tv = TypedValue()
